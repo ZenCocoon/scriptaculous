@@ -612,6 +612,7 @@ Ajax.InPlaceEditor = Class.create({
       this.element.innerHTML = this._oldInnerHTML;
       this._oldInnerHTML = null;
     }
+    this.leaveEditMode();
   },
   handleFormCancellation: function(e) {
     this.wrapUp();
@@ -913,7 +914,7 @@ Object.extend(Ajax.InPlaceEditor, {
       if (ipe._effect)
         ipe._effect.cancel();
     },
-    onFailure: function(transport, ipe) {
+    onFailure: function(ipe, transport) {
       alert('Error communication with the server: ' + transport.responseText.stripTags());
     },
     onFormCustomization: null, // Takes the IPE and its generated form, after editor, before controls.
